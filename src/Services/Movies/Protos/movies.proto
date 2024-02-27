@@ -1,0 +1,36 @@
+syntax = "proto3";
+
+message Movie {
+  bool adult = 1;
+  string backdrop_path = 2;
+  repeated int32 genre_ids = 3;
+  int32 id = 4;
+  string original_language = 5;
+  string original_title = 6;
+  string overview = 7;
+  double popularity = 8;
+  string poster_path = 9;
+  string release_date = 10;
+  string title = 11;
+  bool video = 12;
+  double vote_average = 13;
+  int32 vote_count = 14;
+}
+
+message MovieListRequest {
+  int32 pageIndex = 1;
+  int32 pageSize = 2;
+}
+
+message MovieListResponse {
+  repeated Movie movies = 1;
+}
+
+message MovieRequest {
+  int32 id = 1;
+}
+
+service MovieService {
+  rpc GetMovieList (MovieListRequest) returns (MovieListResponse);
+  rpc GetMovie (MovieRequest) returns (Movie);
+}
